@@ -80,6 +80,7 @@
   import { useStore } from 'vuex'
   import { showToast, showLoadingToast, closeToast, showFailToast } from 'vant'
   import * as chukudanApi from '@/api/chukudan'
+  import * as commonUtil from '@/utils/commonUtil'
   let formRef = ''
   export default {
     mounted() {
@@ -87,8 +88,9 @@
     },
 
     setup() {
-      const startDate = ref('')
-      const endDate = ref('')
+      const currentDate = commonUtil.formatDate(new Date(), 'yyyy/MM/dd')
+      const startDate = ref(currentDate)
+      const endDate = ref(currentDate)
 
       const chehao = ref('')
 

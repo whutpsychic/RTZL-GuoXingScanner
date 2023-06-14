@@ -67,8 +67,8 @@
       const barcode = ref('')
       const code = ref('')
 
-      const onClickLeft = () => router.push({ name: 'jianpeiScannedResult' })
-
+      //const onClickLeft = () => router.push({ name: 'jianpeiScannedResult' })
+      const onClickLeft = () => history.back()
       const onSearch = () => {
         if (!code.value) {
           showFailToast('请输入编号')

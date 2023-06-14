@@ -166,6 +166,10 @@ tbody .el-table__cell > .cell {
   text-align: center;
 }
 
+.el-table__row {
+  --el-table-row-hover-bg-color: #c3e7bf; /** 覆盖选中行颜色的默认变量*/
+}
+
 /***/
 
 .van-popup {

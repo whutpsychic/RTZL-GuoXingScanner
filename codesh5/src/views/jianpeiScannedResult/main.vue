@@ -20,7 +20,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="code" label="一维码" width="210px" />
+        <el-table-column prop="code" label="条形码" width="210px" />
         <el-table-column prop="weight" label="重量" width="110px" />
       </el-table>
 
@@ -99,6 +99,11 @@
       }
 
       const onConfirm = () => {
+        if (tableData1.value.length == 0) {
+          showFailToast('没有拣配数据')
+          return
+        }
+
         let chukudanInfo = store.state.chukudan
         let chukudanListInfo = store.state.chukudanListInfo
         let carInfo = store.state.carInfo

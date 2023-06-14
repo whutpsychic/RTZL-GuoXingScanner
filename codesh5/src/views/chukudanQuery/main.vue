@@ -87,7 +87,7 @@
   import { ref, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
   import * as chukudanApi from '@/api/chukudan'
-
+  import * as commonUtil from '@/utils/commonUtil'
   let formRef = ''
   export default {
     mounted() {
@@ -95,8 +95,10 @@
     },
 
     setup() {
-      const startTime = ref('')
-      const endTime = ref('')
+      const currentDate = commonUtil.formatDate(new Date(), 'yyyy/MM/dd')
+
+      const startTime = ref(currentDate)
+      const endTime = ref(currentDate)
       const billNo = ref('')
       const storagePlace = ref('')
       const showPicker = ref(false)

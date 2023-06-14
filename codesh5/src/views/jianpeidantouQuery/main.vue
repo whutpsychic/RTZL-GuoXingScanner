@@ -78,6 +78,7 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { showToast, showLoadingToast, closeToast, showFailToast } from 'vant'
+  import * as commonUtil from '@/utils/commonUtil'
   let formRef = ''
   export default {
     mounted() {
@@ -85,8 +86,9 @@
     },
 
     setup() {
-      const startTime = ref('')
-      const endTime = ref('')
+      const currentDate = commonUtil.formatDate(new Date(), 'yyyy/MM/dd')
+      const startTime = ref(currentDate)
+      const endTime = ref(currentDate)
       const sendPlanNo = ref('')
       const showPicker = ref(false)
       const showPicker2 = ref(false)

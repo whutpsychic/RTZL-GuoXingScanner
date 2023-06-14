@@ -123,6 +123,11 @@
       }
 
       onMounted(() => {
+        //清理之前选中的车俩信息 和 拣配信息
+        store.commit('setCarInfo', '')
+        store.commit('setScandList', '')
+        store.commit('setChukudanListInfo', '')
+        store.commit('setChukudan', '')
         queryParams = route.query
         queryData()
       })
@@ -159,7 +164,7 @@
     border-radius: 25px;
     font-size: 20px;
     width: 30%;
-    min-height: 50px;
+    height: 90px;
   }
 
   .btn-area img {
