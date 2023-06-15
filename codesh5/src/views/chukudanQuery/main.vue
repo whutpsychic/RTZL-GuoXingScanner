@@ -143,12 +143,14 @@
 
       onMounted(() => {
         chukudanApi.getWarehouse().then((res) => {
-          res.data.value.map((e) => {
-            storagePlaceOptions.value.push({
-              text: e.name,
-              value: e.code,
+          if (res) {
+            res.data.value.map((e) => {
+              storagePlaceOptions.value.push({
+                text: e.name,
+                value: e.code,
+              })
             })
-          })
+          }
         })
       })
 
