@@ -20,7 +20,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="code" label="条形码" />
+        <el-table-column prop="barcode" label="条形码" />
         <el-table-column prop="weight" label="重量" />
       </el-table>
 
@@ -52,12 +52,21 @@
   import { ref, onMounted } from 'vue'
   import { toRaw } from '@vue/reactivity'
   import { useRouter, useRoute } from 'vue-router'
-  import { closeToast, showFailToast, showLoadingToast, showToast } from 'vant'
+  import {
+    closeToast,
+    showFailToast,
+    showLoadingToast,
+    showToast,
+    setToastDefaultOptions,
+  } from 'vant'
   import * as chukudanApi from '@/api/chukudan'
   import { useStore } from 'vuex'
   import { pick } from 'vant/lib/utils'
+  import fc from 'flutter-core'
   export default {
     setup() {
+      setToastDefaultOptions({ duration: 3000 })
+
       const router = useRouter()
       const route = useRoute()
       let tableData1 = ref([])
@@ -68,6 +77,11 @@
 
       const onClickLeft = () => history.back()
       const store = useStore()
+
+      // 注册扫描后监听返回结果函数
+      fc.await('scanner', (res) => {
+        processBarCode(res)
+      })
 
       let totalPickBlocks = 0
       let totalPickWeight = 0
@@ -124,7 +138,7 @@
 
         //pickDate 拣配时间
         pickBill.pickPackage = totalPickBlocks //  拣配包数
-        //pickPerson 减配人
+        pickBill.pickPerson = userInfo.userId
         //pickState 拣配状态
         pickBill.pickWeight = totalPickWeight // 拣配重量
         pickBill.receiveUnit = chukudanListInfo.receiveUnit //收货单位
@@ -210,28 +224,32 @@
 
       onMounted(() => {
         let queryParams = route.query
+        let barcode = queryParams.barcode
+
         let scandList = store.state.scandList || []
         tableData1.value = scandList
         calcPick(scandList)
 
-        if (queryParams.barcode) {
-          let checkRes = chukudanApi.checkBarcodeIfqualified(
-            queryParams.barcode.trim()
-          )
+        processBarCode(barcode)
+      })
+
+      const processBarCode = (barcode) => {
+        if (barcode) {
+          let checkRes = chukudanApi.checkBarcodeIfqualified(barcode.trim())
           if (!checkRes) {
             showFailToast('条形码不符合规范')
             return
           }
 
           for (let i = 0; i < scandList.length; i++) {
-            if (scandList[i].barcode == queryParams.barcode) {
+            if (scandList[i].barcode == barcode) {
               showFailToast('该批次已经选择，请勿重复选择！')
               return
             }
           }
           showLoadingToast('加载中')
 
-          chukudanApi.checkBarcode(queryParams.barcode).then((res) => {
+          chukudanApi.checkBarcode(barcode).then((res) => {
             if (res.data.value === true) {
               showFailToast(res.data.message)
             } else {
@@ -243,7 +261,7 @@
             }
           })
         }
-      })
+      }
 
       return {
         onClickLeft,
