@@ -7,7 +7,7 @@
       @click-left="onClickLeft"
     />
 
-    <div class="table-content container">
+    <div class="table-content container noTableHeader">
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="billNo" label="拣配单号" width="120px;" />
         <el-table-column prop="batchNo" label="批次号" width="100px;" />
@@ -57,6 +57,15 @@
           .then((res) => {
             closeToast()
             tableData.value = res.data.value
+
+            tableData.value.unshift({
+              billNo: '拣配单号',
+              batchNo: '批次号',
+              barcode: '批次编码',
+              weight: '重量',
+              blocks: '块数',
+              unit: '计量单位',
+            })
           })
       })
 

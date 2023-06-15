@@ -170,6 +170,22 @@ tbody .el-table__cell > .cell {
   --el-table-row-hover-bg-color: #c3e7bf; /** 覆盖选中行颜色的默认变量*/
 }
 
+/**为解决表头无法随着滚动条移动的问题，使用第一行模拟表头*/
+
+.noTableHeader .el-table__header-wrapper {
+  display: none;
+}
+
+.noTableHeader .el-table__body tr:nth-child(1) {
+  background-color: var(--table-header-color) !important;
+  font-size: var(--table-header-font-size);
+  pointer-events: none;
+}
+
+.noTableHeader .el-table__body tr:nth-child(1) .cell {
+  color: #ffffff;
+}
+
 /***/
 
 .van-popup {

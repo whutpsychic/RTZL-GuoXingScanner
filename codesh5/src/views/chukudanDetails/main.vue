@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="btn-area">
+      <!-- <div class="btn-area">
         <div>
           <img
             src="@/assets/image/btn_fanhui1.png"
@@ -61,7 +61,7 @@
           />
           <div>扫描</div>
         </div>
-      </div>
+      </div> -->
     </div>
   </main>
 </template>

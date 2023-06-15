@@ -6,7 +6,7 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <div class="table-content container">
+    <div class="table-content container noTableHeader">
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="billNo" label="发货单号" width="130px" />
         <el-table-column prop="receiveUnit" label="收货单位" width="200px" />
@@ -19,9 +19,9 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="jihuariqi" label="计划日期" width="130px" />
+        <!-- <el-table-column prop="jihuariqi" label="计划日期" width="130px" />
         <el-table-column prop="dingdanhao" label="订单号" width="130px" />
-        <el-table-column prop="xuhao" label="序号" width="130px" />
+        <el-table-column prop="xuhao" label="序号" width="130px" /> -->
         <el-table-column prop="materialCode" label="产品编码" width="130px" />
         <el-table-column
           prop="materialDescribe"
@@ -31,10 +31,9 @@
         <!-- <el-table-column prop="picihao" label="批次号" width="130px" /> -->
         <el-table-column prop="unit" label="计量单位" width="130px" />
         <el-table-column prop="storagePlace" label="库房名称" width="130px" />
-
+        <!-- 
         <el-table-column prop="yuanshuqufen" label="运输区分" width="130px" />
-        <el-table-column prop="chehao" label="车号" width="130px" />
-        <!-- <el-table-column prop="jihualeixing" label="计划类型" width="130px" /> -->
+        <el-table-column prop="chehao" label="车号" width="130px" /> -->
       </el-table>
       <div class="btn-area">
         <div>
@@ -119,6 +118,24 @@
         })
         chukudanApi.chukudanQuery(queryParams, 0).then((res) => {
           tableData.value = res.data.value.records
+
+          tableData.value.unshift({
+            billNo: '发货单号',
+            receiveUnit: '收货单号',
+            planNum: '计划重量',
+            actualNum: '已发数量',
+            deliveryDate: '发货单日期',
+            // jihuariqi: '计划日期',
+            // dingdanhao: '订单号',
+            // xuhao: '序号',
+            materialCode: '产品编码',
+            materialDescribe: '产品名称',
+            picihao: '批次号',
+            unit: '计量单位',
+            storagePlace: '库房名称',
+            // yuanshuqufen: '运输区分',
+            // chehao: '车号',
+          })
         })
       }
 

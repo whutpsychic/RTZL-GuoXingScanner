@@ -14,14 +14,14 @@
         id="data-area1"
         @row-click="selectRow"
       >
-        <el-table-column label="日期" width="150px">
+        <el-table-column label="日期">
           <template #default="scope">
             {{ scope.row.proDate.substr(0, 10) }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="code" label="条形码" width="210px" />
-        <el-table-column prop="weight" label="重量" width="110px" />
+        <el-table-column prop="code" label="条形码" />
+        <el-table-column prop="weight" label="重量" />
       </el-table>
 
       <el-table :data="tableData2" border id="data-area2">
@@ -210,7 +210,6 @@
 
       onMounted(() => {
         let queryParams = route.query
-
         let scandList = store.state.scandList || []
         tableData1.value = scandList
         calcPick(scandList)
