@@ -17,9 +17,11 @@
 </template>
 
 <script>
+  import { useRouter } from 'vue-router'
   export default {
     setup() {
-      const onClickLeft = () => history.back()
+      const router = useRouter()
+      const onClickLeft = () => router.push({ name: 'login' })
 
       return {
         onClickLeft,

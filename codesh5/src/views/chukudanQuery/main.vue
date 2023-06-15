@@ -122,7 +122,7 @@
         showPicker3.value = false
       }
 
-      const onClickLeft = () => history.back()
+      const onClickLeft = () => router.push({ name: 'home' })
 
       const onSearch = () => {
         formRef.submit()

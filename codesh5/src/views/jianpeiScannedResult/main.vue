@@ -190,6 +190,12 @@
                 className: 'toast',
                 overlay: true,
               })
+
+              setTimeout(() => {
+                router.push({
+                  name: 'chukudanQuery',
+                })
+              }, 2000)
             } else {
               showFailToast(res.data.message)
             }
