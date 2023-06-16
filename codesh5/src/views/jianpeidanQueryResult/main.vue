@@ -141,7 +141,7 @@
   }
 
   #data-area {
-    flex-grow: 1;
+    height: calc(100% - 120px);
   }
 
   .btn-area {
@@ -154,7 +154,7 @@
     border-radius: 25px;
     font-size: 20px;
     width: 30%;
-    min-height: 50px;
+    height: 90px;
   }
 
   .btn-area img {

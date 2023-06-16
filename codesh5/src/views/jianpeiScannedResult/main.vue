@@ -80,12 +80,12 @@
 
       // 注册扫描后监听返回结果函数
       fc.await('scanner', (res) => {
-        showToast({
-          message: res,
-          type: 'success',
-          className: 'toast',
-          overlay: true,
-        })
+        // showToast({
+        //   message: res,
+        //   type: 'success',
+        //   className: 'toast',
+        //   overlay: true,
+        // })
 
         processBarCode(res)
       })
