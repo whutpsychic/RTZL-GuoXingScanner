@@ -140,6 +140,8 @@
       }
 
       onMounted(() => {
+        alert('test')
+
         //清理之前选中的车俩信息 和 拣配信息
         store.commit('setCarInfo', '')
         store.commit('setScandList', '')
