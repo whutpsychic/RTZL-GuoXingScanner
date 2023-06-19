@@ -197,6 +197,7 @@
 
   ::v-deep(.van-form) {
     height: 100%;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
