@@ -12,6 +12,10 @@
         <div class="label">发货单号</div>
         <div class="value">{{ formData.billNo }}</div>
       </div>
+      <div class="prop-value-div">
+        <div class="label">发货计划号</div>
+        <div class="value">{{ formData.planNo }}</div>
+      </div>
 
       <div class="prop-value-div">
         <div class="label">制单日期</div>
@@ -125,6 +129,7 @@
           formData.yifashuliang = rowData.yifashuliang
           formData.yingjianshuliang = rowData.yingjianshuliang
           formData.shouhuodanwei = rowData.shouhuodanwei
+          formData.planNo = rowData.planNo
         }
         //if (route.query && Object.keys(route.query).length > 0) {
         if (store.state.chukudanListInfo) {
@@ -136,6 +141,7 @@
           formData.yingjianshuliang =
             parseInt(rowData.planNum) - parseInt(rowData.actualNum)
           formData.shouhuodanwei = rowData.receiveUnit
+          formData.planNo = rowData.planNo
         }
 
         if (store.state.carInfo) {
