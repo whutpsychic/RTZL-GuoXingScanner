@@ -28,6 +28,17 @@ export function cheliangQuery(data, pageNum) {
   })
 }
 
+//根据prebookId获取车辆信息
+export function cheliangQueryByPreBookId(data) {
+  data.pageSize = 999
+  data.pageNum = 0
+  return request({
+    url: `${baseUrl.api_base_url}/vehicleprebook/weightData/v1/queryVehicleById`,
+    method: 'post',
+    data: data,
+  })
+}
+
 //获取条形码
 export function getBarCode(data) {
   return request({

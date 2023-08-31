@@ -119,6 +119,7 @@
         chukudanApi.chukudanQuery(queryParams, 0).then((res) => {
           tableData.value = res.data.value.records
 
+          //作为表头
           tableData.value.unshift({
             billNo: '发货单号',
             receiveUnit: '收货单号',

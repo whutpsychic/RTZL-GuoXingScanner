@@ -8,7 +8,7 @@
     />
 
     <div class="table-content container">
-      <van-form @submit="onSubmit" id="form-area" ref="formRef">
+      <!-- <van-form @submit="onSubmit" id="form-area" ref="formRef">
         <van-cell-group inset>
           <van-field
             v-model="startDate"
@@ -44,7 +44,7 @@
             />
           </van-popup>
         </van-cell-group>
-      </van-form>
+      </van-form> -->
 
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="plateNo" label="车号" />
@@ -113,7 +113,8 @@
       const onClickLeft = () => history.back()
 
       const onQuery = () => {
-        formRef.submit()
+        //formRef.submit()
+        onSubmit()
       }
 
       const onSubmit = () => {
@@ -122,19 +123,26 @@
           message: '加载中...',
         })
 
+        //chukudanApi
+        // .cheliangQuery(
+        //   {
+        //     startTime:
+        //       startDate.value.replace('/', '-').replace('/', '-') +
+        //       ' 00:00:00',
+        //     endTime:
+        //       endDate.value.replace('/', '-').replace('/', '-') + ' 23:59:59',
+        //   },
+        //   0
+        // )
+
         chukudanApi
-          .cheliangQuery(
-            {
-              startTime:
-                startDate.value.replace('/', '-').replace('/', '-') +
-                ' 00:00:00',
-              endTime:
-                endDate.value.replace('/', '-').replace('/', '-') + ' 23:59:59',
-            },
-            0
-          )
+          .cheliangQueryByPreBookId({
+            preBookId: store.state.chukudanListInfo.preBookId,
+          })
           .then((res) => {
-            tableData.value = res.data.value.records
+            let resultArr = []
+            resultArr.push(res.data.value)
+            tableData.value = resultArr
           })
       }
 
