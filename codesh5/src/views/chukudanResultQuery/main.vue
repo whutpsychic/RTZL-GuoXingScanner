@@ -9,7 +9,7 @@
     <div class="table-content container noTableHeader">
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="billNo" label="发货单号" width="130px" />
-        <el-table-column prop="plan_no" label="发货计划号" width="130px" />
+        <el-table-column prop="planNo" label="发货计划号" width="130px" />
         <el-table-column prop="receiveUnit" label="收货单位" width="200px" />
         <el-table-column prop="planNum" label="计划重量" width="130px" />
         <el-table-column prop="actualNum" label="已发数量" width="130px" />
@@ -123,7 +123,7 @@
           //作为表头
           tableData.value.unshift({
             billNo: '发货单号',
-            plan_no: '发货计划号',
+            planNo: '发货计划号',
             receiveUnit: '收货单号',
             planNum: '计划重量',
             actualNum: '已发数量',
