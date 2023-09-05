@@ -225,9 +225,8 @@
 
         if (totalPickWeight > 0) {
           tableData2.value[0].queshao = (
-            tableData2.value[0].yingjian -
-            totalPickWeight / 1000
-          ).toFixed(4)
+            tableData2.value[0].yingjian - totalPickWeight
+          ).toFixed(2)
         }
 
         if (tableData2.value[0].queshao < 0) {
@@ -254,8 +253,8 @@
             return
           }
 
-          for (let i = 0; i < scandList.length; i++) {
-            if (scandList[i].barcode == barcode) {
+          for (let i = 0; i < tableData1.value.length; i++) {
+            if (tableData1.value[i].barcode == barcode) {
               showFailToast('该批次已经选择，请勿重复选择！')
               return
             }
@@ -266,11 +265,10 @@
             if (res.data.value === true) {
               showFailToast(res.data.message)
             } else {
-              scandList.push(res.data.value)
-              store.commit('setScandList', scandList)
-              tableData1.value = scandList
+              tableData1.value.push(res.data.value)
+              store.commit('setScandList', tableData1.value)
 
-              calcPick(scandList)
+              calcPick(tableData1.value)
             }
           })
         }
