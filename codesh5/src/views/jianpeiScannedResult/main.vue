@@ -52,6 +52,7 @@
   import { ref, onMounted } from 'vue'
   import { toRaw } from '@vue/reactivity'
   import { useRouter, useRoute } from 'vue-router'
+  import { showNotify, closeNotify } from 'vant'
   import {
     closeToast,
     showFailToast,
@@ -80,12 +81,7 @@
 
       // 注册扫描后监听返回结果函数
       fc.await('scanner', (res) => {
-        // showToast({
-        //   message: res,
-        //   type: 'success',
-        //   className: 'toast',
-        //   overlay: true,
-        // })
+        showNotify({ message: res })
 
         processBarCode(res)
       })
@@ -128,9 +124,8 @@
         let chukudanInfo = store.state.chukudan
         let chukudanListInfo = store.state.chukudanListInfo
         let carInfo = store.state.carInfo
-        let userInfo = store.state.userInfo
+        let userInfo = store.state.user
         let pickBill = {}
-
         //pickBill.batchNo
         //pickBill.billNo = chukudanListInfo.billNo //拣配单号
         pickBill.carNo = carInfo.plateNo //车牌号
@@ -145,7 +140,7 @@
 
         //pickDate 拣配时间
         pickBill.pickPackage = totalPickBlocks //  拣配包数
-        pickBill.pickPerson = userInfo.userId
+        pickBill.pickPerson = userInfo?.userId || ''
         //pickState 拣配状态
         pickBill.pickWeight = totalPickWeight // 拣配重量
         pickBill.receiveUnit = chukudanListInfo.receiveUnit //收货单位
@@ -242,6 +237,7 @@
         tableData1.value = scandList
         calcPick(scandList)
 
+        showNotify({ message: barcode })
         processBarCode(barcode)
       })
 
