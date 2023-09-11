@@ -12,7 +12,7 @@
         <el-table-column prop="planNo" label="发货计划号" width="130px" />
         <el-table-column prop="receiveUnit" label="收货单位" width="200px" />
         <el-table-column prop="planNum" label="计划重量" width="130px" />
-        <el-table-column prop="actualNum" label="已发数量" width="130px" />
+        <!-- <el-table-column prop="actualNum" label="已发数量" width="130px" /> -->
 
         <el-table-column label="发货单日期" width="150px">
           <template #default="scope">
@@ -126,7 +126,7 @@
             planNo: '发货计划号',
             receiveUnit: '收货单号',
             planNum: '计划重量',
-            actualNum: '已发数量',
+            //actualNum: '已发数量',
             deliveryDate: '发货单日期',
             // jihuariqi: '计划日期',
             // dingdanhao: '订单号',
@@ -135,7 +135,7 @@
             materialDescribe: '产品名称',
             picihao: '批次号',
             unit: '计量单位',
-            storagePlace: '库房名称',
+            //storagePlace: '库房名称',
             // yuanshuqufen: '运输区分',
             // chehao: '车号',
           })

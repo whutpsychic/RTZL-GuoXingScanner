@@ -48,7 +48,7 @@
 
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="plateNo" label="车号" />
-        <el-table-column prop="contractNo" label="单据号" />
+        <el-table-column prop="serialNo" label="单据号" />
       </el-table>
 
       <div>
