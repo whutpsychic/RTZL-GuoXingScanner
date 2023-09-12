@@ -132,7 +132,7 @@
         pickBill.carUnit = carInfo.forwardingUnit //车属单位
         //createTime 创建时间
         //deleteFlag  删除标识
-        pickBill.deliveryNo = carInfo.deliveryNo //发货通知单号
+        pickBill.deliveryNo = chukudanListInfo.billNo //发货通知单号
 
         pickBill.materialCode = chukudanListInfo.materialCode //产品编码
         pickBill.materialId = chukudanListInfo.materialDescribeId //产品id
@@ -146,7 +146,7 @@
         pickBill.receiveUnit = chukudanListInfo.receiveUnit //收货单位
 
         pickBill.remark = chukudanListInfo.remark //备注
-        pickBill.sendPlanNo = chukudanListInfo.billNo //  发货计划号
+        pickBill.sendPlanNo = chukudanListInfo.planNo //  发货计划号
 
         //pickBill.tenantId = chukudanListInfo.tenantId
         pickBill.type = chukudanListInfo.type //类型
@@ -176,14 +176,11 @@
           pickBillDetailList.push(pickBillDetail)
         })
 
-        let planNo = chukudanListInfo.planNo
-
         showLoadingToast()
         chukudanApi
           .scanConfirm({
             pickBill,
             pickBillDetailList,
-            planNo,
           })
           .then((res) => {
             if ((res.data.state = true)) {
@@ -301,13 +298,14 @@
 
   .btn-area div {
     border-radius: 25px;
-    font-size: 20px;
+    font-size: 14px;
     width: 30%;
-    min-height: 50px;
+    height: 50px;
   }
 
   .btn-area img {
-    width: 45px;
+    top: 5px;
+    width: 25px;
   }
 
   .btn-area > div:nth-child(2) {

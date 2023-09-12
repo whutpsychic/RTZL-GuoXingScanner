@@ -10,6 +10,8 @@
     <div class="table-content container">
       <el-table :data="tableData" border id="data-area" @row-click="selectRow">
         <el-table-column prop="billNo" label="单号" />
+        <el-table-column prop="deliveryNo" label="发货通知单号" />
+        <el-table-column prop="pickWeight" label="重量" />
         <el-table-column prop="pickDate" label="拣配日期" />
         <el-table-column prop="receiveUnit" label="收货单位" />
       </el-table>
