@@ -176,11 +176,14 @@
           pickBillDetailList.push(pickBillDetail)
         })
 
+        let planNo = chukudanListInfo.planNo
+
         showLoadingToast()
         chukudanApi
           .scanConfirm({
             pickBill,
             pickBillDetailList,
+            planNo,
           })
           .then((res) => {
             if ((res.data.state = true)) {
