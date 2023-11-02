@@ -139,7 +139,10 @@
         pickBill.materialName = chukudanListInfo.materialDescribe //产品名称（产品描述）
 
         //pickDate 拣配时间
-        pickBill.pickPackage = totalPickBlocks //  拣配包数
+        //pickBill.pickPackage = totalPickBlocks //  拣配包数
+        pickBill.pickPackage = tableData1.value.length
+        pickBill.pickBlockNumber = totalPickBlocks
+
         pickBill.pickPerson = userInfo?.userId || ''
         //pickState 拣配状态
         pickBill.pickWeight = totalPickWeight // 拣配重量
